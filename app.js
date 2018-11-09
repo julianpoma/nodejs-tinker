@@ -11,6 +11,7 @@ const app = express();
 
 //Parses the request body
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(rootDir, 'public')));
 
 //App routes
 app.use('/admin', productsRoutes);
