@@ -15,3 +15,5 @@ router.post('/products', (req, res, next) => {
 });
 
 module.exports = router;
+
+//https://stackoverflow.com/questions/50886914/visual-studio-code-installation-error-on-ubuntu-18-04
