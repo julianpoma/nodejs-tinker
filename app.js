@@ -4,7 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const rootDir = require('./util/path');
-const productsRoutes = require('./routes/products');
+
+const productsData = require('./routes/products');
 const shopRoutes = require('./routes/shop');
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
 
 //App routes
-app.use('/admin', productsRoutes);
+app.use('/admin', productsData.routes);
 app.use(shopRoutes);
 
 // Catch all un-handled routes
