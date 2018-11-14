@@ -8,12 +8,13 @@ const rootDir = require('../util/path');
 const products = [];
 
 router.get('/products/create', (req, res, next) => {
-	res.sendFile(path.join(rootDir, 'views', 'products', 'create.html'));
+	res.render('products/create', {
+        pageTitle: "Nodeshopee",
+    })
 });
 
 router.post('/products/create', (req, res, next) => {
     products.push(req.body);
-    console.log(products);
 	res.redirect('/');
 });
 

@@ -10,6 +10,9 @@ const shopRoutes = require('./routes/shop');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', 'views'); //This is by default
+
 //Parses the request body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
@@ -20,7 +23,10 @@ app.use(shopRoutes);
 
 // Catch all un-handled routes
 app.use((req, res, next) => {
-	res.status(404).sendFile(path.join(rootDir, 'views', 'errors', '404.html'));
+	res.status(404).render('errors/404', { 
+        pageTitle: 'Nodeshopee | Page Not Found',
+        errorMessage: "Ooops. We couldn't find what you are looking for!"
+    });
 });
 
 app.listen(3000);
