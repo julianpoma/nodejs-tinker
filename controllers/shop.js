@@ -1,5 +1,4 @@
 const Product = require('../models/product');
-const Cart = require('../models/cart');
 
 exports.index = (req, res, next) => {
 	Product.fetchAll((products) => {
@@ -18,12 +17,4 @@ exports.getProduct = (req, res, next) => {
 			pageTitle: 'Nodeshopee'
 		});
 	});
-};
-
-exports.addItemToCart = (req, res, next) => {
-    const id = req.body.productId;
-    Product.findById(id, (product) => {
-        Cart.addProduct(product);
-    });
-    res.redirect('/');
 };
