@@ -1,8 +1,10 @@
 const Product = require('../models/product');
 
 exports.index = (req, res, next) => {
-    res.render('shop', {
-        products: Product.fetchAll(),
-        pageTitle: "Nodeshopee",
+    Product.fetchAll(products => {
+        res.render('shop', {
+            products: products,
+            pageTitle: "Nodeshopee",
+        });
     });
 };
