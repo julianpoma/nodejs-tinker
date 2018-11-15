@@ -9,9 +9,7 @@
     </div>
     <h2>$<%= product.price %></h2>
     <p><%= product.description %></p>
-    <form action="/cart" method="post">
-        <button class="btn" type="submit">Add to Cart</button>
-    </form>
+    <%- include('../partials/cart-button.ejs', {product: product}) %>
 </main>
 
 <%- include('../partials/foot.ejs') %>
