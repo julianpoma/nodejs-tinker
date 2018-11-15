@@ -1,8 +1,8 @@
-const products = require('./product');
+const Product = require('../models/product');
 
 exports.index = (req, res, next) => {
     res.render('shop', {
-        products: products.products,
+        products: Product.fetchAll(),
         pageTitle: "Nodeshopee",
     });
 };

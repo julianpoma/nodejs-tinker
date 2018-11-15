@@ -1,4 +1,4 @@
-const products = [];
+const Product = require('../models/product');
 
 exports.create = (req, res, next) => {
     res.render('products/create', {
@@ -7,8 +7,7 @@ exports.create = (req, res, next) => {
 }
 
 exports.store = (req, res, next) => {
-    products.push(req.body);
+    let product = new Product(req.body.title);
+    product.save();
     res.redirect('/');
 }
-
-exports.products = products;
