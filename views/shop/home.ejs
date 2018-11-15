@@ -1,8 +1,7 @@
-<%- include('partials/head.ejs') %>
-<%- include('partials/navbar.ejs') %>
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navigation.ejs') %>
 
 <main>
-    <h1>Welcome to Nodeshopee</h1>
     <% if (products.length > 0) { %>
         <div class="grid">
             <% for (let product of products) { %>
@@ -11,11 +10,12 @@
                         <h1 class="product__title"><%= product.title %></h1>
                     </header>
                     <div class="card__image">
-                        <img src="http://knowledge.wharton.upenn.edu/wp-content/uploads/2016/01/Newport_DeepWork_HC.jpg" alt="A Book">
+                        <img src="<%= product.imageUrl %>"
+                            alt="<%= product.title %>">
                     </div>
                     <div class="card__content">
-                        <h2 class="product__price">$19.99</h2>
-                        <p class="product__description">A very interesting book about so many even more interesting things!</p>
+                        <h2 class="product__price">$<%= product.price %></h2>
+                        <p class="product__description"><%= product.description %></p>
                     </div>
                     <div class="card__actions">
                         <button class="btn">Add to Cart</button>
@@ -24,9 +24,8 @@
             <% } %>
         </div>
     <% } else { %>
-        <h1>No products available ATM</h1>
+        <h1>No Products Found!</h1>
     <% } %>
-
 </main>
 
-<%- include('partials/foot.ejs') %>
+<%- include('../partials/foot.ejs') %>
