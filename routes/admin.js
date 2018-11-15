@@ -7,4 +7,4 @@ router.get('/products/create', productController.create);
 
 router.post('/products', productController.store);
 
-exports.routes = router;
+module.exports = router;
