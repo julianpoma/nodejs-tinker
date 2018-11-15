@@ -202,3 +202,15 @@ form {
     display: none;
   }
 }
+
+.has-max-width {
+    max-width: 800px;
+}
+
+.has-margin-auto {
+    margin: auto;
+}
+
+.has-text-center {
+    text-align: center;
+}

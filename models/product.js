@@ -2,8 +2,21 @@ const fs = require('fs');
 const path = require('path');
 const rootPath = require('../util/path');
 
+const dbPath = path.join(rootPath, 'database', 'products.json');
+
+const getProductsFromDB = (callback) => {
+    fs.readFile(dbPath, (error, content) => {
+        if (error) {
+            callback([]);
+        } else {
+            callback(JSON.parse(content));
+        }
+    });
+};
+
 module.exports = class Product {
     constructor(title, imageUrl, description, price) {
+        this.id = parseInt(Math.random() * 100000000).toString();
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;
@@ -11,27 +24,22 @@ module.exports = class Product {
 	}
 
 	save() {
-		const dbPath = path.join(rootPath, 'database', 'products.json');
-		fs.readFile(dbPath, (error, content) => {
-			let products = [];
-			products = JSON.parse(content);
-			products.push(this);
+        getProductsFromDB(products => {
+            products.push(this);
             fs.writeFile(dbPath, JSON.stringify(products), err => {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("File saved successfully!");
+                if(err) console.log(err);
             });
-		});
+        });
 	}
 
 	static fetchAll(callback) {
-        const dbPath = path.join(rootPath, 'database', 'products.json');
-        fs.readFile(dbPath, (error, content) => {
-            if(error) {
-                callback([]);
-            }
-            callback(JSON.parse(content));
-        })
-	}
+        getProductsFromDB(callback);
+    }
+    
+    static findById(id, callback) {
+        getProductsFromDB(products => {
+            const product = products.find(p => p.id === id);
+            callback(product);
+        });
+    }
 };

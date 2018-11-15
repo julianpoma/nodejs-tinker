@@ -21,8 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
 
 //App routes
-app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use('/admin', adminRoutes);
 
 // Catch all un-handled routes
 app.use(errorController.show404);

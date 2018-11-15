@@ -1,0 +1,17 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navigation.ejs') %>
+
+<main class="centered has-max-width has-margin-auto">
+    <h1><%= product.title %></h1>
+    <hr>
+    <div class="has-text-center">
+        <img src="<%= product.imageUrl %>" alt="<%= product.title %>" style="width: 400px;">
+    </div>
+    <h2>$<%= product.price %></h2>
+    <p><%= product.description %></p>
+    <form action="/cart" method="post">
+        <button class="btn" type="submit">Add to Cart</button>
+    </form>
+</main>
+
+<%- include('../partials/foot.ejs') %>
