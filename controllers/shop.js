@@ -9,7 +9,7 @@ exports.index = (req, res, next) => {
 	});
 };
 
-exports.getProduct = (req, res, next) => {
+exports.detail = (req, res, next) => {
 	const id = req.params.productId;
 	Product.findById(id, (product) => {
 		res.render('shop/product-detail', {
