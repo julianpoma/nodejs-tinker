@@ -5,6 +5,15 @@ const rootPath = require('../util/path');
 const dbPath = path.join(rootPath, 'database', 'cart.json');
 
 module.exports = class Cart {
+    static getCart(callback) {
+        fs.readFile(dbPath, (error, content) => {
+            if (error) {
+                callback(null)
+            }
+            callback(JSON.parse(content));
+        });
+    }
+
 	static addProduct(productToBeAdded) {
 		fs.readFile(dbPath, (error, content) => {
 			//Read the cart, or create a new one
@@ -33,5 +42,27 @@ module.exports = class Cart {
 				console.log(err);
 			});
 		});
-	}
+    }
+    
+    static deleteProduct(productToBeDeleted) {
+        fs.readFile(dbPath, (error, content) => {
+            //Read the cart, or create a new one
+            if (error) {
+                return true;
+            }
+
+            const cart = JSON.parse(content);
+
+            const updatedCart = {...cart};
+            const index = updatedCart.products.findIndex(p => p.id === productToBeDeleted.id);
+            const cartProduct = updatedCart.products[index];
+
+            updatedCart.products.splice(index, 1);
+            updatedCart.price -= productToBeDeleted.price * cartProduct.quantity;
+
+            fs.writeFile(dbPath, JSON.stringify(updatedCart), (error) => {
+                console.log(err);
+            });
+        });
+    }
 };

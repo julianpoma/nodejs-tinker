@@ -1,0 +1,22 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navigation.ejs') %>
+
+<main>
+    <% if(cart.products.length > 0) { %>
+    <ul>    
+    <% for (let item of cart.products) { %>
+        <li>
+            <%= item.id %> - (<%= item.quantity %>)
+            <form action="/cart/<%= item.id %>/delete" method="POST">
+                <button type="submit">Delete item</button>
+            </form>
+        </li>
+    <% } %>
+    </ul>
+    <p>Total Price: $<%= cart.total %></p>
+    <% } else { %>
+        <h1>No products in cart</h1>
+    <% } %>
+</main>
+
+<%- include('../partials/foot.ejs') %>

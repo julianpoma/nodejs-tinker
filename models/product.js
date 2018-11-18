@@ -54,7 +54,7 @@ module.exports = class Product {
         });
 
     }
-    
+
     static delete(id) {
         getProductsFromDB((products) => {
             const index = products.findIndex(p => p.id === id);

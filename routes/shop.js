@@ -9,6 +9,8 @@ const cartController = require('../controllers/cart');
 
 router.get('/', shopController.index);
 router.get('/products/:productId', shopController.detail);
+router.get('/cart', cartController.viewCart);
 router.post('/cart', cartController.addProductToCart);
+router.post('/cart/:productId/delete', cartController.deleteProductFromCart);
 
 module.exports = router;
