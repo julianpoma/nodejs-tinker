@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "debug": "nodemon --inspect-brk src/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,6 @@
     "url": "https://github.com/julianpoma/nodejs-tinker/issues"
   },
   "homepage": "https://github.com/julianpoma/nodejs-tinker#readme",
-  "devDependencies": {
-    "nodemon": "^1.18.6"
-  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
